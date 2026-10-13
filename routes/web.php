@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\ProdukController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -91,3 +93,30 @@ Route::redirect('/beranda', '/');
 Route::fallback(function () {
     return response('Halaman tidak ditemukan (kustom).', 404);
 });
+
+
+//praktik contoh
+Route::get('/produk',
+[ProdukController::class,'index'])
+->name('produk.index');
+
+
+Route::get('/produk/{id}',
+[ProdukController::class,'show'])
+->name('produk.show');
+
+
+//praktik baru
+Route::get('/profil', 
+[MahasiswaController::class,'profil'])
+->name('mahasiswa.profil');
+
+
+Route::get('/mahasiswa',
+[MahasiswaController::class,'daftar'])
+->name('mahasiswa.daftar');
+
+
+Route::get('/mahasiswa/{nim}',
+[MahasiswaController::class,'detail'])
+->name('mahasiswa.detail');
