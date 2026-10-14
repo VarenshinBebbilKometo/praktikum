@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -95,15 +96,17 @@ Route::fallback(function () {
 });
 
 
-//praktik contoh
+//praktik contoh produk
 Route::get('/produk',
-[ProdukController::class,'index'])
+    [ProdukController::class,'index'])
 ->name('produk.index');
 
 
 Route::get('/produk/{id}',
-[ProdukController::class,'show'])
+  [ProdukController::class,'show'])
 ->name('produk.show');
+
+
 
 
 //praktik baru
@@ -120,3 +123,16 @@ Route::get('/mahasiswa',
 Route::get('/mahasiswa/{nim}',
 [MahasiswaController::class,'detail'])
 ->name('mahasiswa.detail');
+
+//product
+Route::get('/products',
+[ProductController::class,
+'index']);
+
+
+Route::get('/products/{id}',
+function ($id) {
+    return'Products #' . $id;
+});
+
+Route::get('/products/{id}',[ProductController::class,'show']);
