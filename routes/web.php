@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\MatakuliahController;
 
 
 // Halaman utama
@@ -120,7 +121,23 @@ Route::get('/jurusan/{id}', [JurusanController::class, 'show'])
     ->whereNumber('id')
     ->name('jurusan.show');
     
+
+    // Route Mata Kuliah
+Route::get('/matakuliah/create', [MatakuliahController::class, 'create'])
+    ->name('matakuliah.create');
+
+Route::post('/matakuliah', [MatakuliahController::class, 'store'])
+    ->name('matakuliah.store');
+    
+Route::get('/matakuliah', [MatakuliahController::class, 'index'])
+    ->name('matakuliah.index');
+    
+Route::get('/matakuliah/{id}', [MatakuliahController::class, 'show'])
+    ->name('matakuliah.show');
+
+
 // Fallback
 Route::fallback(function () {
     return response('Halaman tidak ditemukan (kustom).', 404);
 });
+
